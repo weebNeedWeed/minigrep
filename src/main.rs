@@ -3,9 +3,7 @@ use std::env;
 use std::process;
 
 fn main() {
-    let args: Vec<_> = env::args().collect();
-
-    let config: Config = Config::build(&args).unwrap_or_else(|err| {
+    let config: Config = Config::build(env::args()).unwrap_or_else(|err| {
         eprintln!("Problem parsing arguments: {err}");
         process::exit(1)
     });
@@ -14,4 +12,7 @@ fn main() {
         eprintln!("Application error: {e}");
         process::exit(1);
     }
+
+    let a: Vec<_> = env::args().collect();
+    println!("{a:?}");
 }
